@@ -92,7 +92,7 @@ class TransferController extends Controller
         ];
 
         if ($isAdmin || Auth::guard('corporate')->check()) {
-            $rules['id_viajero'] = 'required|exists:transfer_viajeros,id_viajero';
+            $rules['id_viajero'] = 'required|exists:transfer_viajerosAndrea,id_viajero';
         }
 
         if ($request->reservation_type === 'round_trip' && empty($request->id_hotel_recogida) && !empty($request->id_hotel_destino)) {

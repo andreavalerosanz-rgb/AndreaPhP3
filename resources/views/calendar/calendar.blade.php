@@ -87,9 +87,10 @@ document.addEventListener('DOMContentLoaded', function() {
         },
 
         eventClick: function(info) {
-            window.location.href = `/schedule/booking/${info.event.id}`;
-        }
-    });
+                    const baseUrl = "{{ url('schedule/booking') }}"; 
+                    window.location.href = baseUrl + '/' + info.event.id;
+                }
+            });
     
     calendar.render();
 });

@@ -20,7 +20,7 @@ class AuthController extends Controller
 
     public function showRegister()
     {
-        $zonas = \DB::table('transfer_zonas')->get();
+        $zonas = \DB::table('transfer_zonasAndrea')->get();
         return view('register', compact('zonas'));
     }
 
@@ -97,7 +97,7 @@ class AuthController extends Controller
         } else {
             $partnerRules = [
                 'comision' => 'required|integer|min:0|max:100',
-                'id_zona' => 'required|exists:transfer_zonas,id_zona',
+                'id_zona' => 'required|exists:transfer_zonasAndrea,id_zona',
             ];
             $request->validate(array_merge($baseRules, $partnerRules));
         }

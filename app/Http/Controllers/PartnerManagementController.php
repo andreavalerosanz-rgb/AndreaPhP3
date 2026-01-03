@@ -19,8 +19,8 @@ class PartnerManagementController extends Controller
     {
         $request->validate([
             'nombre'      => 'required|string|max:255',
-            'email_hotel' => 'required|email|unique:transfer_hoteles,email_hotel',
-            'id_zona'     => 'required|exists:transfer_zonas,id_zona',
+            'email_hotel' => 'required|email|unique:transfer_hotelesAndrea,email_hotel',
+            'id_zona'     => 'required|exists:transfer_zonasAndrea,id_zona',
             'password'    => 'required|min:6|confirmed',
             'Comision'    => 'required|numeric|min:0|max:100',
         ]);

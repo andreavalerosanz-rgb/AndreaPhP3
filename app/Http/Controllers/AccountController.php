@@ -34,9 +34,9 @@ class AccountController extends Controller
         $guard = $identity['guard'];
 
         $config = match ($guard) {
-            'admin'     => ['table' => 'transfer_admin', 'id' => 'id_admin', 'email' => 'email_admin'],
-            'corporate' => ['table' => 'transfer_hoteles', 'id' => 'id_hotel', 'email' => 'email_hotel'],
-            default     => ['table' => 'transfer_viajeros', 'id' => 'id_viajero', 'email' => 'email_viajero'],
+            'admin'     => ['table' => 'transfer_adminAndrea', 'id' => 'id_admin', 'email' => 'email_admin'],
+            'corporate' => ['table' => 'transfer_hotelesAndrea', 'id' => 'id_hotel', 'email' => 'email_hotel'],
+            default     => ['table' => 'transfer_viajerosAndrea', 'id' => 'id_viajero', 'email' => 'email_viajero'],
         };
 
         $rules = [

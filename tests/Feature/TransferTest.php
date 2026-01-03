@@ -106,7 +106,7 @@ class TransferTest extends TestCase
         $response->assertViewIs('transfers.confirmation');
         $response->assertViewHas('localizador');
 
-        $this->assertDatabaseHas('transfer_reservas', [
+        $this->assertDatabaseHas('transfer_reservasAndrea', [
             'email_cliente' => 'john@example.com',
             'id_hotel' => $this->partner->id_hotel,
             'id_vehiculo' => $this->fleet->id_vehiculo

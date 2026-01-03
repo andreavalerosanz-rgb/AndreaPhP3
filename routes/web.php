@@ -85,22 +85,23 @@ Route::middleware(['auth:admin,corporate,web', 'clear-others'])->group(function 
             Route::put('/{id}/enable', [PartnerManagementController::class, 'enable'])->name('enable');
         });
 
-        Route::get('/export/regions-json', function () {
-            $total = \DB::table('transfer_reservas')->count();
-            $zonas = \DB::table('transfer_zonas AS z')
-                ->leftJoin('transfer_hoteles AS h', 'h.id_zona', '=', 'z.id_zona')
-                ->leftJoin('transfer_reservas AS r', 'r.id_hotel', '=', 'h.id_hotel')
-                ->selectRaw('z.descripcion AS zona, COUNT(r.id_reserva) AS num_traslados')
-                ->groupBy('z.descripcion')->get()
-                ->map(function ($item) use ($total) {
-                    $item->porcentaje = $total > 0 ? round(($item->num_traslados / $total) * 100, 2) : 0;
-                    return $item;
-                });
-            return response(json_encode(['total' => $total, 'regions' => $zonas], JSON_PRETTY_PRINT))
-                ->header('Content-Type', 'text/plain')
-                ->header('Content-Disposition', 'attachment; filename="analytics_regions.json"');
-        })->name('descargarJsonZonas');
+Route::get('/export/regions-json', function () {
+    $total = \App\Models\Booking::count();
+    
+    $zonas = \App\Models\Region::withCount(['partners as num_traslados' => function($query) {
+        $query->join('transfer_reservas', 'transfer_hotelesAndrea.id_hotel', '=', 'transfer_reservas.id_hotel');
+    }])->get()->map(function ($item) use ($total) {
+        $item->porcentaje = $total > 0 ? round(($item->num_traslados / $total) * 100, 2) : 0;
+        return [
+            'zona' => $item->descripcion,
+            'num_traslados' => $item->num_traslados,
+            'porcentaje' => $item->porcentaje
+        ];
     });
+
+    return response(json_encode(['total' => $total, 'regions' => $zonas], JSON_PRETTY_PRINT))
+        ->header('Content-Type', 'text/plain');
+})->name('admin.descargarJsonZonas');
 
     // --- PANEL PARTNER (CORPORATIVO) ---
     Route::prefix('partner-access')->name('corporate.')->middleware('auth:corporate')->group(function () {

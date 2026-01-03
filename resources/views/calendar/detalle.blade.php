@@ -72,20 +72,29 @@
         </div>
 
         {{-- COLUMNA CONTROL --}}
-        <div class="md:col-span-4 space-y-8">
-            <div class="bg-white border border-slate-100 p-10 rounded-[2.5rem] shadow-xl text-center flex flex-col justify-center">
-                <i data-lucide="hotel" class="w-10 h-10 text-slate-200 mx-auto mb-4"></i>
-                <p class="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1">Destino Final</p>
-                <h3 class="text-xl font-black text-slate-800 uppercase tracking-tighter italic">{{ $hotel?->nombre ?? 'Sin hotel' }}</h3>
-                <div class="badge bg-slate-50 text-slate-500 border-none font-bold text-[9px] uppercase px-4 py-3 rounded-lg mt-4">{{ $vehiculo?->descripcion ?? 'Vehículo Estándar' }}</div>
-            </div>
+<div class="md:col-span-4 space-y-8">
+    <div class="bg-white border border-slate-100 p-10 rounded-[2.5rem] shadow-xl text-center flex flex-col justify-center">
+        <i data-lucide="hotel" class="w-10 h-10 text-slate-200 mx-auto mb-4"></i>
+        <p class="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1">Destino Final</p>
+        
+        {{-- CAMBIO: Usamos la relación 'partner' del modelo Booking --}}
+        <h3 class="text-xl font-black text-slate-800 uppercase tracking-tighter italic">
+            {{ $reserva->partner?->nombre ?? 'Sin hotel' }}
+        </h3>
 
-            <div class="flex flex-col gap-4">
-                <a href="{{ request()->query('from') === 'mis_reservas' ? route('mis_reservas') : route('calendar.index') }}" class="btn bg-slate-900 border-none text-white h-14 rounded-2xl font-black uppercase text-xs shadow-xl shadow-slate-900/20">
-                    <i data-lucide="arrow-left" class="w-4 h-4 mr-2"></i> Volver a la Agenda
-                </a>
-            </div>
+        {{-- CAMBIO: Usamos la relación 'fleetUnit' y su accessor 'label' --}}
+        <div class="badge bg-slate-50 text-slate-500 border-none font-bold text-[9px] uppercase px-4 py-3 rounded-lg mt-4">
+            {{ $reserva->fleetUnit?->label ?? 'Vehículo Estándar' }}
         </div>
+    </div>
+
+    <div class="flex flex-col gap-4">
+        <a href="{{ request()->query('from') === 'mis_reservas' ? route('mis_reservas') : route('calendar.index') }}" 
+           class="btn bg-slate-900 border-none text-white h-14 rounded-2xl font-black uppercase text-xs shadow-xl shadow-slate-900/20">
+            <i data-lucide="arrow-left" class="w-4 h-4 mr-2"></i> Volver a la Agenda
+        </a>
+    </div>
+</div>
     </div>
 </div>
 @endsection

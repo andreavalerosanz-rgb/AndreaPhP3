@@ -9,7 +9,7 @@ class Traveler extends Authenticatable
 {
     use HasFactory;
 
-    protected $table = 'transfer_viajeros';
+    protected $table = 'transfer_viajerosAndrea';
     protected $primaryKey = 'id_viajero';
     public $timestamps = false;
 

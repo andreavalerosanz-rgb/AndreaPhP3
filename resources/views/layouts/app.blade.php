@@ -164,7 +164,7 @@
                         <i data-lucide="user-plus" class="w-5 h-5"></i> Registrarse
                     </a></li>
                     <div class="divider before:bg-slate-800 after:bg-slate-800 my-2 opacity-50"></div>
-                    <li><a href="/" class="flex gap-4 py-3 hover:bg-slate-800 hover:text-white">
+                    <li><a href="{{ url('/') }}" class="flex gap-4 py-3 hover:bg-slate-800 hover:text-white">
                         <i data-lucide="home" class="w-5 h-5"></i> Volver a la Web
                     </a></li>
                 @endif

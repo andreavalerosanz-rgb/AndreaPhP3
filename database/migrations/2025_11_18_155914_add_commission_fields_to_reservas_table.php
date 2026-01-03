@@ -8,8 +8,8 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::table('transfer_reservas', function (Blueprint $table) {
-            // El precio total del trayecto, obtenido de transfer_precios
+        Schema::table('transfer_reservasAndrea', function (Blueprint $table) {
+            // El precio total del trayecto, obtenido de transfer_preciosAndrea
             $table->decimal('precio_total', 10, 2)->nullable()->after('id_vehiculo');
 
             // Comisión ganada por el hotel para esta reserva específica
@@ -26,7 +26,7 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::table('transfer_reservas', function (Blueprint $table) {
+        Schema::table('transfer_reservasAndrea', function (Blueprint $table) {
             $table->dropColumn(['precio_total', 'comision_ganada', 'comision_liquidada', 'id_viajero']);
         });
     }

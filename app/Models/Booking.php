@@ -11,7 +11,7 @@ class Booking extends Model
 {
     use HasFactory;
 
-    protected $table = 'transfer_reservas';
+    protected $table = 'transfer_reservasAndrea';
     protected $primaryKey = 'id_reserva';
     public $timestamps = false; 
 
@@ -104,7 +104,7 @@ class Booking extends Model
     public static function syncCompletedBookings(): void
     {
         DB::statement("
-            UPDATE transfer_reservas
+            UPDATE transfer_reservasAndrea
             SET estado = 'finalizada', comision_liquidada = comision_ganada, fecha_modificacion = NOW()
             WHERE estado = 'confirmada'
             AND (

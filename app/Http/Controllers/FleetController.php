@@ -23,7 +23,7 @@ class FleetController extends Controller
     {
         $request->validate([
             'label'           => 'required|string|max:255',
-            'driver_identity' => 'required|email|max:255|unique:transfer_vehiculos,email_conductor',
+            'driver_identity' => 'required|email|max:255|unique:transfer_vehiculosAndrea,email_conductor',
             'access_key'      => 'required|string|max:255',
             'rate'            => 'required|numeric|min:0',
         ]);
@@ -51,7 +51,7 @@ class FleetController extends Controller
 
         $request->validate([
             'label'           => 'required|string|max:255',
-            'driver_identity' => 'required|email|max:255|unique:transfer_vehiculos,email_conductor,' . $unit->id_vehiculo . ',id_vehiculo',
+            'driver_identity' => 'required|email|max:255|unique:transfer_vehiculosAndrea,email_conductor,' . $unit->id_vehiculo . ',id_vehiculo',
             'access_key'      => 'required|string|max:255',
             'rate'            => 'required|numeric|min:0',
         ]);

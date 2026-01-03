@@ -54,13 +54,14 @@
             </div>
         </div>
 
-        {{-- Zona --}}
+        {{-- Zona Operativa - CORREGIDO --}}
         <div class="bg-white border border-slate-100 p-10 rounded-[2.5rem] shadow-sm group hover:border-primary/20 transition-all">
             <div class="flex justify-between items-start">
                 <div>
                     <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Zona Operativa</p>
                     <h3 class="text-3xl font-black text-slate-800 mt-2 truncate max-w-[200px]">
-                        {{ Auth::guard('corporate')->user()->zona->descripcion ?? 'Sin zona' }}
+                        {{-- Se cambia 'zona' por 'region' para coincidir con el modelo --}}
+                        {{ Auth::guard('corporate')->user()->region->descripcion ?? 'Sin zona' }}
                     </h3>
                 </div>
                 <div class="w-14 h-14 bg-orange-50 rounded-2xl flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
@@ -70,6 +71,7 @@
         </div>
     </div>
 
+    {{-- Resto del archivo se mantiene igual... --}}
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
         <div class="bg-slate-50 border border-slate-100 rounded-[3rem] p-12 shadow-inner">
             <div class="flex items-center gap-4 mb-10 border-b border-slate-200 pb-6">

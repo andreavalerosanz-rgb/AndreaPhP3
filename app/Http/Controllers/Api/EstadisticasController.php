@@ -10,12 +10,12 @@ class EstadisticasController extends Controller
     public function resumenZonas()
     {
         // Total de reservas
-        $total = DB::table('transfer_reservas')->count();
+        $total = DB::table('transfer_reservasAndrea')->count();
 
         // Agregado por zonas
-        $data = DB::table('transfer_zonas AS z')
-            ->leftJoin('transfer_hoteles AS h', 'h.id_zona', '=', 'z.id_zona')
-            ->leftJoin('transfer_reservas AS r', 'r.id_hotel', '=', 'h.id_hotel')
+        $data = DB::table('transfer_zonasAndrea AS z')
+            ->leftJoin('transfer_hotelesAndrea AS h', 'h.id_zona', '=', 'z.id_zona')
+            ->leftJoin('transfer_reservasAndrea AS r', 'r.id_hotel', '=', 'h.id_hotel')
             ->selectRaw('
                 z.descripcion AS zona,
                 COUNT(r.id_reserva) AS num_traslados

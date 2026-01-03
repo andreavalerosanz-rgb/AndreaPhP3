@@ -9,7 +9,7 @@ class FleetUnit extends Model
 {
     use HasFactory;
 
-    protected $table = 'transfer_vehiculos'; 
+    protected $table = 'transfer_vehiculosAndrea'; 
     protected $primaryKey = 'id_vehiculo';  
     public $timestamps = false; 
 

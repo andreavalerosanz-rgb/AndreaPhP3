@@ -10,7 +10,7 @@ class Partner extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-    protected $table = 'transfer_hoteles';
+    protected $table = 'transfer_hotelesAndrea';
     protected $primaryKey = 'id_hotel';
     public $timestamps = false;
 

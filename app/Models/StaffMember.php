@@ -11,7 +11,7 @@ class StaffMember extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-    protected $table = 'transfer_admin';
+    protected $table = 'transfer_adminAndrea';
     protected $primaryKey = 'id_admin';
     public $timestamps = false;
 
